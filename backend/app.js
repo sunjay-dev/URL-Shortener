@@ -4,12 +4,21 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const { connectToMongoDB } = require('./connection.js');
 const passport = require('passport');
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set('trust proxy', true);
+
+// app.use((req, res, next)=> {
+//     console.log(req.method);
+//     console.log(req.url);
+//     console.log(req.body);
+//     next();
+// })
 
 connectToMongoDB(process.env.MONGODB_URI).then(() => {
     console.log('Mongoose connected!')

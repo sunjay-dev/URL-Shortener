@@ -1,3 +1,9 @@
+# 📄 Link to Download CEP
+
+You can download the complete **Course End Project (CEP) Report** for this mobile application from the root of this repository:
+
+[📘 Download 22SW050_71_MAD_CEP.pdf](./22SW050_71_MAD_CEP.pdf)
+
 # URL Shortener Using Mongodb
 
 A simple URL shortener built with Node.js and Express.js that stores shortened URLs in MongoDB. This project allows users to create short URLs and redirect to the original URLs.
