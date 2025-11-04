@@ -47,7 +47,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://go.sunjay.xyz/user/signup'),
+        Uri.parse('http://localhost:9000/user/signup'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'username': userName,

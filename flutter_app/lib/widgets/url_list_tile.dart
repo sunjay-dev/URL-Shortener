@@ -2,70 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/details.screen.dart';
 
 class UrlListTile extends StatelessWidget {
-   final Map<String, dynamic> url;
+  final Map<String, dynamic> url;
 
   const UrlListTile({super.key, required this.url});
 
   @override
   Widget build(BuildContext context) {
-    final name = url['name'];
-    final shortUrl = url['shortId'];
-    final createdAt = url['createdAt'];
-    final visitHistory = url['visitHistory'] ?? [];
-    final clicks = visitHistory.length;
+    final String name = url['name'];
+    final String shortUrl = url['shortId'];
+    final String createdAt = url['createdAt'];
+    final List<dynamic> visitHistory = url['visitHistory'] ?? [];
+    final int clicks = visitHistory.length;
 
     return Card(
-      color: Colors.white,
-      elevation: 2,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailsScreen(url: url),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        
+        leading: const Icon(Icons.link),
+        
+        title: Text(
+          name,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
+        ),
+
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 4),
+            Text(
+              shortUrl,
+              style: const TextStyle(color: Colors.blueAccent),
             ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '🔗 $name',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  Text(
-                    createdAt,
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                ],
-              ),
+            const SizedBox(height: 4),
+            Text(
+              createdAt,
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+          ],
+        ),
 
-              const SizedBox(height: 6),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(shortUrl),
-                  Row(
-                    children: [
-                      Icon(Icons.ads_click_outlined),
-                      const SizedBox(width: 4),
-                      Text('$clicks'),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.ads_click_outlined, size: 20),
+            const SizedBox(width: 4),
+            Text('$clicks'),
+          ],
+        ),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => DetailsScreen(url: url),
           ),
         ),
       ),

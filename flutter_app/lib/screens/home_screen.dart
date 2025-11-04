@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://go.sunjay.xyz/'),
+        Uri.parse('http://localhost:9000/'),
         headers: {
           'Content-Type': 'application/json',
           'authorization': 'Bearer ${prefs.getString('JWT_TOKEN')}',
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
         setState(() {
-          shortUrl = "https://go.sunjay.xyz/${data["new"]}";
+          shortUrl = "http://localhost:9000/${data["new"]}";
         });
         _urlController.clear();
         _aliasController.clear();
@@ -118,7 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Row(
                 children: [
-                  // Left Input (Readonly URL)
                   Expanded(
                     flex: 3,
                     child: Container(
@@ -136,14 +135,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           vertical: 10,
                         ),
                         child: Text(
-                          "https://go.sunjay.xyz/",
+                          "http://localhost:9000/",
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
                     ),
                   ),
 
-                  // Right Input (Alias)
                   Expanded(
                     flex: 2,
                     child: TextFormField(
@@ -156,15 +154,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade200),
-                          borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            width: 2,
-                          ),
                           borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(8),
                             bottomRight: Radius.circular(8),

@@ -36,7 +36,7 @@ class DetailsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8),
-              CopyContainer(url: "https://sunjay.xyz/${url["shortId"]}"),
+              CopyContainer(url: "http://localhost:9000/${url["shortId"]}"),
 
               const SizedBox(height: 30),
               const Text(
@@ -45,9 +45,8 @@ class DetailsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
 
-              // Table with fixed height and horizontal scrolling
               SizedBox(
-                height: 300, // adjust as needed
+                height: 300,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: VisitHistoryTable(

@@ -16,16 +16,16 @@ class _UrlsScreenState extends State<UrlsScreen> {
   @override
   void initState() {
     super.initState();
-    _checkToken();
+    checkToken();
   }
 
-  Future<String?> _getToken() async {
+  Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('JWT_TOKEN');
   }
 
-  void _checkToken() async {
-    final token = await _getToken();
+  void checkToken() async {
+    final token = await getToken();
 
     if (token == null || token.isEmpty) {
       if (mounted) {
@@ -74,7 +74,7 @@ class UrlListSection extends StatelessWidget {
 
     try {
       final response = await http.get(
-        Uri.parse('https://go.sunjay.xyz/api/userUrls/'),
+        Uri.parse('http://localhost:9000/api/userUrls/'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',

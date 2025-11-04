@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
-  Future<void> _handleLogout(BuildContext context) async {
+  Future<void> handleLogout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('JWT_TOKEN');
 
@@ -45,7 +45,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text("Logout"),
-            onTap: () => _handleLogout(context),
+            onTap: () => handleLogout(context),
           ),
         ],
       ),
